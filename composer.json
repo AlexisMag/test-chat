@@ -1,0 +1,14 @@
+{
+    "name": "root/chat",
+    "authors": [
+        {
+            "name": "Alexis MAGRON",
+            "email": "alexis.magron@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0":{
+            "Controller" : "./src/"
+        }
+    }
+}

@@ -1,6 +1,9 @@
 <?php
-
+session_start();
 include ('./../vendor/autoload.php');
+include ('./../config/config.php');
+
+Database\Database::setConfig($config);
 
 $url = $_SERVER['REQUEST_URI'];
 
@@ -14,6 +17,18 @@ $routes = array(
     '/login' => array(
         'controller' => 'UserCtrl',
         'method' => 'login'
+    ),
+    '/connect' => array(
+        'controller' => 'UserCtrl',
+        'method' => 'connect'
+    ),
+    '/subscribe' => array(
+        'controller' => 'UserCtrl',
+        'method' => 'subscribe'
+    ),
+    '/new_account' => array(
+        'controller' => 'UserCtrl',
+        'method' => 'newAccount'
     ),
     '/chat/{id}' => array(
         'controller' => 'ChatCtrl',

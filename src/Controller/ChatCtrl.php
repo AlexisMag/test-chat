@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-class ChatCtrl {    
+class ChatCtrl extends Controller{    
     
     public function chat($id_user = null){
         

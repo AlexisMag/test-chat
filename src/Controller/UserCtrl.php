@@ -21,7 +21,7 @@ class UserCtrl extends Controller{
         
         //Connection OK
         if(isset($user)){
-            $_SESSION['user'] = $user;            
+            $_SESSION['id_user_connected'] = $user->id_user;
             header('Location: /chat');
         }else{
             header('Location: /login');

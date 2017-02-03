@@ -7,6 +7,21 @@ class User extends Model{
     protected $password;
     protected $pseudo;
     
+    public static function findById($id_user){
+        $pdo = \Database\Database::getInstance();
+        $request = "SELECT * FROM user WHERE id_user = ?";
+        $sth = $pdo->prepare($request);
+        $sth->execute(array(
+            $id_user
+        ));
+        if($results = $sth->fetch()){
+            $user = new User;
+            $user->assignResults($results);
+            return $user;
+        }
+        return null;
+    }
+    
     public static function findForConnection($pseudo, $password){
         $pdo = \Database\Database::getInstance();
         $request = "SELECT * FROM user WHERE pseudo = ? AND password = ?";

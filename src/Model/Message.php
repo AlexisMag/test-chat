@@ -10,12 +10,19 @@ class Message extends Model{
     protected $id_user;
     protected $id_user_for;
     
-    public static function findLastMessages(){
-        $request = "SELECT message.*, pseudo FROM message INNER JOIN user ON (message.id_user = user.id_user) ORDER BY timestamp DESC LIMIT 0, 100";
+    public static function findLastMessages($last_timestamp = null){
+        $request = "SELECT message.*, pseudo FROM message INNER JOIN user ON (message.id_user = user.id_user)";
+        $bind = array();
+        if(isset($last_timestamp)){
+            $request.= " WHERE timestamp > ? ";
+            $bind[] = $last_timestamp;
+        }
+        
+        $request .= "ORDER BY timestamp DESC LIMIT 0, 100";
         $pdo = \Database\Database::getInstance();
         $sth = $pdo->prepare($request);
-        $sth->execute();
-        $results = $sth->fetchAll();
+        $sth->execute($bind);
+        $results = $sth->fetchAll();        
         
         $messages = array();
         foreach($results as $result){

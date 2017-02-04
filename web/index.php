@@ -3,10 +3,12 @@ session_start();
 include ('./../vendor/autoload.php');
 include ('./../config/config.php');
 
+
+
 Database\Database::setConfig($config);
 
 $url = $_SERVER['REQUEST_URI'];
-
+$url = preg_replace('#\?.*#', '', $url);
 $routes = array(
     /**
      * "/route" => array(
@@ -41,6 +43,10 @@ $routes = array(
     '/chat/{id}' => array(
         'controller' => 'ChatCtrl',
         'method' => 'chat'
+    ),
+    '/chat/ajax/get_messages' => array(
+        'controller' => 'ChatCtrl',
+        'method' => 'ajaxGetMessages'
     )
     
 );

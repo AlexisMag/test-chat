@@ -34,7 +34,7 @@ class UserCtrl extends Controller{
             exit();
         }        
         $user = new \Model\User;
-        $user->pseudo = $_POST['pseudo'];
+        $user->pseudo = strip_tags($_POST['pseudo']);
         $user->setPassword($_POST['password']);
         $user->insert();
         $this->connect($user);

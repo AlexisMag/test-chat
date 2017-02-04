@@ -1,14 +1,7 @@
 <div class='messages'>
-    <?php foreach($messages as $message) { ?>
-    <div class='message'>
-        <b>
-            <?php echo $message->pseudo ?>
-        </b>
-        <br>
-        <?php echo nl2br($message->content) ?> 
-    </div>
-    <hr>
-    <?php } ?>
+    <?php foreach($messages as $message) { 
+        include ("message.html.php");
+    } ?>
 </div>
     
 <form method='post' action='/post_message'>
@@ -19,3 +12,7 @@
         Envoyer
     </button>
 </form>
+
+<script src='assets/js/jquery.js'></script>    
+<script src='assets/js/chat/chat.js'></script>
+    

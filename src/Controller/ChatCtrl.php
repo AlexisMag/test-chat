@@ -27,4 +27,11 @@ class ChatCtrl extends Controller{
         header('Location: /chat');
     }
     
+    public function ajaxGetMessages(){
+        $last_timestamp = isset($_GET['last_timestamp']) ? $_GET['last_timestamp'] : 0;        
+        $messages = \Model\Message::findLastMessages($last_timestamp);
+        
+        include "../src/views/chat/chat_ajax.html.php";
+    }
+    
 }

@@ -14,7 +14,7 @@ composer install
 Exemple :
 ```
 <VirtualHost *:80>
-
+	ServerName chat.dev
 	DocumentRoot <repertoire ou est placé le projet>
 
         <Directory "repertoire ou est placé le projet">
